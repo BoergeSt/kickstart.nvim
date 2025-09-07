@@ -699,6 +699,11 @@ require('lazy').setup({
           },
         },
         texlab = {},
+        ruff = {
+          settings = {
+            -- ruff settings
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
