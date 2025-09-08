@@ -708,11 +708,7 @@ require('lazy').setup({
           },
         },
         texlab = {},
-        ruff = {
-          settings = {
-            -- ruff settings
-          },
-        },
+        ruff = {},
         pyright = {},
       }
 
