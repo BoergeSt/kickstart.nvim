@@ -713,6 +713,7 @@ require('lazy').setup({
             -- ruff settings
           },
         },
+        pyright = {},
       }
 
       -- Ensure the servers and tools above are installed
