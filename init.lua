@@ -726,6 +726,7 @@ require('lazy').setup({
           },
         },
         zls = {},
+        bashls = {}, -- needs the bash-language-server which can be installed with 'npm i -g bash-language-server'
       }
 
       -- The following loop will configure each server with the capabilities we defined above.
