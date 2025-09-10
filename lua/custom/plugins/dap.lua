@@ -118,6 +118,6 @@ return {
     --     detached = vim.fn.has 'win32' == 0,
     --   },
     -- }
-    require('dap-python').setup 'python3'
+    require('dap-python').setup 'debugpy-adapter'
   end,
 }
