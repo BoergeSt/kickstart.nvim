@@ -505,26 +505,13 @@ require('lazy').setup({
           },
         },
         texlab = {},
-        ruff = {},
-        pylsp = {
-          settings = {
-            pylsp = {
-              plugins = {
-                autopep8 = { enabled = false },
-                flake8 = { enabled = false },
-                mccabe = { enabled = false },
-                pycodestyle = { enabled = false },
-                pydocstyle = { enabled = false },
-                pyflakes = { enabled = false },
-                pylint = { enabled = false },
-                yapf = { enabled = false },
-              },
-            },
-          },
-        },
         zls = {},
         bashls = {}, -- needs the bash-language-server which can be installed with 'npm i -g bash-language-server'
       }
+      local python_lsp_settings = require 'custom.plugins.lsp.python'
+      for k, v in pairs(python_lsp_settings) do
+        servers[k] = v
+      end
 
       -- The following loop will configure each server with the capabilities we defined above.
       -- This will ensure that all servers have the same base configuration, but also
