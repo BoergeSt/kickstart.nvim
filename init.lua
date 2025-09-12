@@ -708,23 +708,57 @@ require('lazy').setup({
           },
         },
         texlab = {},
-        ruff = {},
+        -- ruff = {},
+        -- pylsp = {
+        --   settings = {
+        --     pylsp = {
+        --       plugins = {
+        --         autopep8 = { enabled = false },
+        --         flake8 = { enabled = false },
+        --         mccabe = { enabled = false },
+        --         pycodestyle = { enabled = false },
+        --         pydocstyle = { enabled = false },
+        --         pyflakes = { enabled = false },
+        --         pylint = { enabled = false },
+        --         yapf = { enabled = false },
+        --       },
+        --     },
+        --   },
+        -- },
+
         pylsp = {
+          cmd = { 'pylsp', '-vvv', '--log-file', '/tmp/lsp.log' },
           settings = {
-            pylsp = {
-              plugins = {
-                autopep8 = { enabled = false },
-                flake8 = { enabled = false },
-                mccabe = { enabled = false },
-                pycodestyle = { enabled = false },
-                pydocstyle = { enabled = false },
-                pyflakes = { enabled = false },
-                pylint = { enabled = false },
-                yapf = { enabled = false },
-              },
-            },
+            --   pylsp = {
+            --     plugins = {
+            --       pycodestyle = { enabled = false },
+            --       mccabe = { enabled = false },
+            --       pyflakes = { enabled = false },
+            --       flake8 = { enabled = false },
+            --       pylint = { enabled = false },
+            --       pydocstyle = { enabled = false },
+            --       autopep8 = { enabled = false },
+            --       black = { enabled = false },
+            --       yapf = { enabled = false },
+            --       ruff = {
+            --         enabled = true,
+            --         formatEnabled = true,
+            --         extendSelect = { 'I' },
+            --         format = { 'I' },
+            --         unsafeFixes = true,
+            --       },
+            --       pylsp_mypy = { enabled = true, live_mode = true },
+            --       jedi_completion = {
+            --         fuzzy = true,
+            --       },
+            --       rope_autoimport = {
+            --         enabled = true,
+            --       },
+            --     },
+            --   },
           },
         },
+
         zls = {},
         bashls = {}, -- needs the bash-language-server which can be installed with 'npm i -g bash-language-server'
       }
@@ -754,7 +788,10 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
-      require('mason-tool-installer').setup { ensure_installed = ensure_installed }
+      require('mason-tool-installer').setup {
+        ensure_installed = ensure_installed,
+        automatic_enable = false,
+      }
     end,
   },
 
