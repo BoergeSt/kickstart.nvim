@@ -239,10 +239,14 @@ return {
         zls = {},
         bashls = {}, -- needs the bash-language-server which can be installed with 'npm i -g bash-language-server'
       }
-      local lsp_server_plugins = {
-        'custom.plugins.lsp.python',
-      }
+      local lsp_server_plugins = vim.api.nvim_get_runtime_file('lua/custom/plugins/lsp/*.lua', true)
+      local module_base = vim.fn.stdpath 'config' .. '/lua/'
       for _, lsp_server_plugin in ipairs(lsp_server_plugins) do
+        lsp_server_plugin = lsp_server_plugin:sub(#module_base + 1) -- strip away leading path
+        lsp_server_plugin = lsp_server_plugin:gsub('%.lua$', '') -- strip away the trailing .lua
+        lsp_server_plugin = lsp_server_plugin:gsub('/', '.') -- turn '/' into '.'
+        print('Loading plugin ' .. lsp_server_plugin)
+
         local python_lsp_settings = require(lsp_server_plugin)
         for k, v in pairs(python_lsp_settings) do
           servers[k] = v
