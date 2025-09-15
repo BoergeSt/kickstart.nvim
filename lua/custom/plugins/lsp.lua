@@ -239,9 +239,14 @@ return {
         zls = {},
         bashls = {}, -- needs the bash-language-server which can be installed with 'npm i -g bash-language-server'
       }
-      local python_lsp_settings = require 'custom.plugins.lsp.python'
-      for k, v in pairs(python_lsp_settings) do
-        servers[k] = v
+      local lsp_server_plugins = {
+        'custom.plugins.lsp.python',
+      }
+      for _, lsp_server_plugin in ipairs(lsp_server_plugins) do
+        local python_lsp_settings = require(lsp_server_plugin)
+        for k, v in pairs(python_lsp_settings) do
+          servers[k] = v
+        end
       end
 
       -- The following loop will configure each server with the capabilities we defined above.
