@@ -1,6 +1,6 @@
 return {
-  'BoergeSt/venv-selector.nvim',
-  -- 'linux-cultist/venv-selector.nvim',
+  -- 'BoergeSt/venv-selector.nvim',
+  'linux-cultist/venv-selector.nvim',
   ft = 'python', -- Load when opening Python files
   keys = {
     { '<leader>v', '<cmd>VenvSelect<cr>' }, -- Open picker on keymap
