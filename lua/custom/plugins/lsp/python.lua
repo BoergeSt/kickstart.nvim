@@ -118,7 +118,7 @@ return {
               'F', -- pyflakes: detects various errors.
               'FA', -- flake8-future-annotations: enforces using PEP 563 style future annotations
               'FBT', -- flake8-boolean-trap: Detect boolean traps.
-              'FIX', -- flake8-fixme: Check for FIXME, TODO and other temporary developer notes.
+              -- 'FIX', -- flake8-fixme: Check for FIXME, TODO and other temporary developer notes.
               'I', -- Warn on improperly formated Importls
               'ICN', -- flake8-import-conventions: opinionated plugin how certain packages should be imported or aliased.
               'ISC', -- flake8-implicit-str-concat: encourage correct string literal concatenation
