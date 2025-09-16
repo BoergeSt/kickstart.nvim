@@ -239,6 +239,7 @@ return {
         zls = {},
         bashls = {}, -- needs the bash-language-server which can be installed with 'npm i -g bash-language-server'
         clangd = {},
+        yamlls = {},
       }
       local lsp_server_plugins = vim.api.nvim_get_runtime_file('lua/custom/plugins/lsp/*.lua', true)
       local module_base = vim.fn.stdpath 'config' .. '/lua/'
