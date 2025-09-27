@@ -249,8 +249,8 @@ return {
         lsp_server_plugin = lsp_server_plugin:gsub('/', '.') -- turn '/' into '.'
         print('Loading plugin ' .. lsp_server_plugin)
 
-        local python_lsp_settings = require(lsp_server_plugin)
-        for k, v in pairs(python_lsp_settings) do
+        local lsp_server_settings = require(lsp_server_plugin)
+        for k, v in pairs(lsp_server_settings) do
           servers[k] = v
         end
       end
