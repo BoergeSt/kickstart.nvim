@@ -235,6 +235,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   end
 end
 
+local function is_dap_buffer()
+  return require('cmp_dap').is_dap_buffer()
+end
+
 ---@type vim.Option
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
@@ -309,6 +313,12 @@ require('lazy').setup({
     },
   },
 
+  {
+    'saghen/blink.compat',
+    version = '*',
+    lazy = true,
+    opts = {},
+  },
   { -- Autocompletion
     'saghen/blink.cmp',
     event = 'VimEnter',
@@ -341,6 +351,7 @@ require('lazy').setup({
         opts = {},
       },
       'folke/lazydev.nvim',
+      'rcarriga/cmp-dap',
     },
     --- @module 'blink.cmp'
     --- @type blink.cmp.Config
@@ -384,11 +395,21 @@ require('lazy').setup({
         -- Optionally, set `auto_show = true` to show the documentation after a delay.
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
       },
+      enabled = function()
+        return vim.bo.buftype ~= 'prompt' or is_dap_buffer()
+      end,
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'lazydev' },
+        default = function(_)
+          if is_dap_buffer() then
+            return { 'dap', 'snippets', 'buffer' }
+          else
+            return { 'lsp', 'path', 'snippets', 'lazydev' }
+          end
+        end,
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
+          dap = { name = 'dap', module = 'blink.compat.source' },
         },
       },
 
