@@ -11,8 +11,14 @@ return {
       suggestion = { enabled = false },
       panel = { enabled = false },
       filetypes = {
-        python = true,
+        c = true,
+        cpp = true,
+        dts = true,
+        kconfig = true,
         lua = true,
+        make = true,
+        python = true,
+        sh = true,
         ['*'] = false, -- disable for all other filetypes and ignore default `filetypes`
       },
     },
