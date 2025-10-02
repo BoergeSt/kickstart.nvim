@@ -19,6 +19,8 @@ return {
         make = true,
         python = true,
         sh = true,
+        yaml = true,
+        json = true,
         ['*'] = false, -- disable for all other filetypes and ignore default `filetypes`
       },
     },
