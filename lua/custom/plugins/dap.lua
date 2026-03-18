@@ -10,7 +10,6 @@ return {
       opts = {
         windows = {
           terminal = {
-            start_hidden = false,
             position = 'right',
           },
         },
