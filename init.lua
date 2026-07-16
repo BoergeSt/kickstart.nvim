@@ -308,6 +308,8 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        verilog = { 'verible' },
+        systemverilog = { 'verible' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -399,7 +401,7 @@ require('lazy').setup({
         'fish', 'gitcommit', 'git_config', 'gitignore', 'git_rebase', 'html',
         'javascript', 'json', 'kconfig', 'latex', 'lua', 'luadoc', 'make',
         'markdown', 'markdown_inline', 'muttrc', 'passwd', 'python', 'query',
-        'rst', 'ruby', 'ssh_config', 'toml', 'vim', 'vimdoc', 'xml', 'yaml',
+        'rst', 'ruby', 'ssh_config', 'systemverilog', 'toml', 'vim', 'vimdoc', 'xml', 'yaml',
       }
       -- The main branch no longer enables highlighting/indent itself; start
       -- treesitter per buffer whenever a parser for the filetype is installed.
