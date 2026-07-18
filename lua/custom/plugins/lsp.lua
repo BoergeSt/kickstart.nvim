@@ -235,6 +235,7 @@ return {
         clangd = {},
         yamlls = {},
         verible = {},
+        slang_server = {},
       }
       local lsp_server_plugins = vim.api.nvim_get_runtime_file('lua/custom/plugins/lsp/*.lua', true)
       local module_base = vim.fn.stdpath 'config' .. '/lua/'
