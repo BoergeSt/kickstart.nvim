@@ -421,7 +421,6 @@ require('lazy').setup({
         'make',
         'markdown',
         'markdown_inline',
-        'muttrc',
         'passwd',
         'python',
         'query',
