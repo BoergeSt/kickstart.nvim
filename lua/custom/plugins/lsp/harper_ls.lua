@@ -1,0 +1,37 @@
+return {
+  harper_ls = {
+    -- nvim-lspconfig's default filetypes list, plus mail/text: harper is used
+    -- as the grammar/spell checker instead of vim's native 'spell' option.
+    filetypes = {
+      'asciidoc',
+      'c',
+      'cpp',
+      'cs',
+      'gitcommit',
+      'go',
+      'html',
+      'java',
+      'javascript',
+      'lua',
+      'mail',
+      'markdown',
+      'nix',
+      'python',
+      'ruby',
+      'rust',
+      'swift',
+      'tex',
+      'text',
+      'toml',
+      'typescript',
+      'typescriptreact',
+      'haskell',
+      'cmake',
+      'typst',
+      'php',
+      'dart',
+      'clojure',
+      'sh',
+    },
+  },
+}

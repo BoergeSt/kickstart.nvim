@@ -243,7 +243,6 @@ return {
         lsp_server_plugin = lsp_server_plugin:sub(#module_base + 1) -- strip away leading path
         lsp_server_plugin = lsp_server_plugin:gsub('%.lua$', '') -- strip away the trailing .lua
         lsp_server_plugin = lsp_server_plugin:gsub('/', '.') -- turn '/' into '.'
-        print('Loading plugin ' .. lsp_server_plugin)
 
         local lsp_server_settings = require(lsp_server_plugin)
         for k, v in pairs(lsp_server_settings) do
@@ -283,7 +282,11 @@ return {
   },
   {
     'rachartier/tiny-inline-diagnostic.nvim',
-    event = 'VeryLazy',
+    -- 'LspAttach' (not 'VeryLazy') so this loads before/with the first LSP
+    -- attach, otherwise fast servers (e.g. harper-ls) can attach to the very
+    -- first buffer (e.g. a gitcommit/mail buffer opened directly from the
+    -- command line) before this plugin's own LspAttach listener exists.
+    event = 'LspAttach',
     priority = 1000,
     config = function()
       require('tiny-inline-diagnostic').setup()
