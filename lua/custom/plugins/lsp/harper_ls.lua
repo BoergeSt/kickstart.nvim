@@ -1,7 +1,10 @@
 return {
   harper_ls = {
-    -- nvim-lspconfig's default filetypes list, plus mail/text: harper is used
-    -- as the grammar/spell checker instead of vim's native 'spell' option.
+    -- nvim-lspconfig's default filetypes list, plus mail/text. harper-ls is
+    -- NOT auto-attached (see lsp.lua, which skips it in the vim.lsp.enable
+    -- loop) -- it's attached on demand via <leader>tg. Native 'spell' is
+    -- enabled for these same filetypes for always-on spell checking; see
+    -- lsp.lua's spellcheck-filetypes autocmd.
     filetypes = {
       'asciidoc',
       'c',

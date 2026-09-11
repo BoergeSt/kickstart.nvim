@@ -250,6 +250,38 @@ return {
         end
       end
 
+      -- Servers listed here are configured (so they're available to start)
+      -- but never auto-attached via vim.lsp.enable -- they're started on
+      -- demand instead (see the keymaps below).
+      local manual_start_only = {
+        harper_ls = true,
+      }
+
+      -- Enable native spell checking for the filetypes harper_ls covers,
+      -- instead of auto-attaching it as a grammar/spell LSP.
+      if servers.harper_ls and servers.harper_ls.filetypes then
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = servers.harper_ls.filetypes,
+          group = vim.api.nvim_create_augroup('spellcheck-filetypes', { clear = true }),
+          callback = function()
+            vim.wo.spell = true
+          end,
+        })
+      end
+
+      -- Toggle harper_ls (grammar/style checking) for the current buffer on demand.
+      vim.keymap.set('n', '<leader>tg', function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local clients = vim.lsp.get_clients { bufnr = bufnr, name = 'harper_ls' }
+        if #clients > 0 then
+          for _, client in ipairs(clients) do
+            vim.lsp.stop_client(client.id)
+          end
+        else
+          vim.lsp.start(vim.lsp.config.harper_ls, { bufnr = bufnr })
+        end
+      end, { desc = '[T]oggle [G]rammar check (harper_ls)' })
+
       -- The following loop will configure each server with the capabilities we defined above.
       -- This will ensure that all servers have the same base configuration, but also
       -- allow for server-specific overrides.
@@ -257,7 +289,9 @@ return {
         server_config.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server_config.capabilities or {})
         -- require('lspconfig')[server_name].setup(server_config)
         vim.lsp.config(server_name, server_config)
-        vim.lsp.enable(server_name)
+        if not manual_start_only[server_name] then
+          vim.lsp.enable(server_name)
+        end
       end
 
       -- Ensure the servers and tools above are installed
