@@ -23,9 +23,20 @@ return {
           '.git',
         },
       },
+      commands = {
+        -- Open the node under the cursor with the system handler (xdg-open via vim.ui.open)
+        system_open = function(state)
+          local node = state.tree:get_node()
+          local _, err = vim.ui.open(node.path)
+          if err then
+            vim.notify('Failed to open ' .. node.path .. ': ' .. err, vim.log.levels.ERROR)
+          end
+        end,
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',
+          ['gx'] = 'system_open',
         },
       },
     },
